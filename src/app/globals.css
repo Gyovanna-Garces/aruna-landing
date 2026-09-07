@@ -47,3 +47,10 @@ a {
     color-scheme: dark;
   }
 }
+:root {
+  --color-petroleum: #005257;
+  --color-coral: #BD7158;
+  --color-gold: #D9B432;
+  --color-sand: #E1C7B4;
+  --color-white: #FFFFFF;
+}
