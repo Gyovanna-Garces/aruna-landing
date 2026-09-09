@@ -1,13 +1,13 @@
 import "./globals.css";
-import {Playfair_Display, Montserrat} from "next/font/google";
+import {Playfair_Display, Montserrat, Cormorant_Garamond, Manrope } from "next/font/google";
 
-const playfair = Playfair_Display({ subsets: ["latin"] });
-const montserrat = Montserrat({ subsets: ["latin"] });
+const cormorant_garamond = Cormorant_Garamond({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR">
-      <body className={`${playfair.className} ${montserrat.className}`}>
+      <body className={`${cormorant_garamond.className} ${manrope.className}`}>
         {children}
       </body>
     </html>

@@ -26,8 +26,8 @@
     --clr-accent-gold: var(--color-gold);
 
     /* --- TOKENS DE TIPOGRAFIA --- */
-    --ff-heading: 'Playfair Display', Georgia, serif;
-    --ff-body: 'Montserrat', system-ui, sans-serif;
+    --ff-heading: 'Cormorant Garamond', serif;
+    --ff-body: 'Manrope', sans-serif;
     
     /* Escala de tamanhos responsiva aproximada do layout */
     --fs-xs: 0.75rem;   /* Tag de seções (ex: "CONCEITO") */
@@ -41,7 +41,8 @@
     --space-sm: 0.5rem;
     --space-md: 1rem;
     --space-lg: 2rem;
-    --space-xl: 4.5rem; /* Espaçamento confortável entre seções do layout */
+    --section-padding-desktop: 6rem;
+    --section-padding-mobile: 4rem;
     
     --container-width: 1200px;
     --radius-button: 9999px; /* Botões do Aruna são completamente arredondados */
