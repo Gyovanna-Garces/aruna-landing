@@ -1,4 +1,5 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
+import {Header} from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: 'Aruna - Cozinha Tropical Brasileira',
@@ -8,7 +9,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-      <h1>Aruna</h1>
       <p>Bem-vindo ao nosso restaurante!</p>
     </div>
   )
