@@ -6,6 +6,16 @@
   overflow: hidden;
 }
 
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 60%; /* mesmo ajuste fino que você já vinha fazendo na foto */
+  z-index: 0;
+}
+
 .bgImage {
   object-fit: cover !important;
   object-position: 50% 10%; /* ajuste os valores conforme a posição do prato na sua foto */
@@ -83,6 +93,18 @@
 }
 .btnPrimary:hover {
   opacity: 0.9;
+}
+
+.smokeLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;   /* some com o preto do overlay, só a fumaça aparece */
+  pointer-events: none;     /* garante que cliques passem direto pro conteúdo abaixo */
+  transition: transform 0.2s ease-out; /* suaviza o movimento do mouse */
+  z-index: 1;
 }
 
 .btnSecondary {
