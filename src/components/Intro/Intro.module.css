@@ -1,0 +1,58 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: var(--color-sand-light);
+  transition: opacity 0.5s ease 0.2s;
+}
+
+.logoWrapper {
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  transform: translate(0, 0) scale(1);
+}
+
+.logoImg {
+  animation: fadeInLogo 1s ease forwards;
+}
+
+.loadingBar {
+  width: 240px;
+  height: 2px;
+  background-color: rgba(0, 82, 87, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loadingFill {
+  height: 100%;
+  background-color: var(--color-gold);
+  transition: width 0.2s ease-out;
+}
+
+.morphOut {
+  opacity: 0;
+}
+
+.morphOut .logoWrapper {
+  transform: translate(var(--morph-x), var(--morph-y)) scale(var(--morph-scale));
+}
+
+.morphOut .loadingBar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes fadeInLogo {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoImg { animation: none; opacity: 1; }
+  .logoWrapper, .intro { transition: none; }
+}
