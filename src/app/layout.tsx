@@ -2,6 +2,7 @@ import { Header } from "@/components/Header/Header";
 import "./globals.css";
 import {Cormorant_Garamond, Manrope } from "next/font/google";
 import {Intro} from "@/components/Intro/Intro";
+import {Footer} from "@/components/Footer/Footer";
 
 const cormorant_garamond = Cormorant_Garamond({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
@@ -13,7 +14,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Intro />
         <Header />
         <main>{children}</main>
-        
+        <Footer />
       </body>
     </html>
   );

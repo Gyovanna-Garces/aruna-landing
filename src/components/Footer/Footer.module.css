@@ -1,0 +1,275 @@
+.footer {
+  width: 100%;
+  background-color: #f7eee5;
+  color: var(--color-petroleum);
+  border-top: 3px solid var(--color-petroleum);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* =========================
+   INFORMAÇÕES
+========================= */
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.1fr;
+  min-height: 130px;
+  padding: 24px 0;
+}
+
+.infoBlock {
+  display: flex;
+  gap: 12px;
+  padding: 0 28px;
+  border-right: 1px solid rgba(0, 82, 87, 0.12);
+}
+
+.infoBlock:first-child {
+  padding-left: 0;
+}
+
+.infoIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 1px;
+  color: var(--color-petroleum);
+}
+
+.infoIcon svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 1.7;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.label {
+  font-family: var(--ff-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-petroleum);
+  margin-bottom: 4px;
+}
+
+.infoContent strong,
+.infoContent a,
+.infoContent span {
+  font-family: var(--ff-body);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.infoContent strong {
+  font-weight: 600;
+  color: #394442;
+}
+
+.infoContent > span:not(.label) {
+  color: #747a78;
+}
+
+.infoContent a {
+  color: var(--color-petroleum);
+  text-decoration: none;
+}
+
+.action {
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.action:hover {
+  text-decoration: underline;
+}
+
+.socialLabel {
+  margin-top: 5px;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 16px;
+  height: 16px;
+  color: var(--color-petroleum);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.socials a svg {
+  width: 11px;
+  height: 11px;
+}
+
+.socials a:hover {
+  opacity: 0.65;
+}
+
+/* =========================
+   MAPA
+========================= */
+
+.map {
+  position: relative;
+  height: 82px;
+  margin-left: 28px;
+  overflow: hidden;
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+/* =========================
+   PARTE INFERIOR
+========================= */
+
+.footerBottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 75px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(0, 82, 87, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 145px;
+  height: auto;
+  object-fit: contain;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.navigation a {
+  font-family: var(--ff-body);
+  font-size: 8px;
+  font-weight: 500;
+  color: #4c5553;
+  text-decoration: none;
+}
+
+.navigation span {
+  font-size: 8px;
+  color: rgba(0, 82, 87, 0.3);
+}
+
+.navigation a:hover {
+  color: var(--color-petroleum);
+}
+
+.slogan {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  font-family: var(--ff-heading);
+  font-size: 10px;
+  font-style: italic;
+  color: #4c5553;
+}
+
+.sloganIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* =========================
+   COPYRIGHT
+========================= */
+
+.copyright {
+  padding-bottom: 12px;
+  text-align: center;
+  font-family: var(--ff-body);
+  font-size: 7px;
+  color: #858a88;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+  .infoGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .infoBlock {
+    padding: 0 15px;
+  }
+
+  .map {
+    display: none;
+  }
+
+  .footerBottom {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .slogan {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    padding: 25px 0;
+  }
+
+  .infoBlock,
+  .infoBlock:first-child {
+    padding: 0;
+    border-right: none;
+  }
+
+  .navigation {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
