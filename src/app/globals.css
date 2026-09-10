@@ -148,7 +148,7 @@ h3 { font-size: var(--fs-md); }
     text-decoration: none;
 }
 
-/* Botão Sólido Coral (ex: "Reserve sua mesa") */
+/* Botão Sólido Coral */
 .btn-coral {
     background-color: var(--clr-accent-coral);
     color: var(--color-white);

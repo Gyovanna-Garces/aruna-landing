@@ -11,6 +11,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className={`${cormorant_garamond.className} ${manrope.className}`}>
         <Header />
         <main>{children}</main>
+        
       </body>
     </html>
   );
