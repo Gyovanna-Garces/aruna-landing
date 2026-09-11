@@ -2,7 +2,7 @@
   width: 100%;
   background-color: #f7eee5;
   color: var(--color-petroleum);
-  border-top: 3px solid var(--color-petroleum);
+  border-top: 1px solid var(--color-petroleum);
 }
 
 .container {

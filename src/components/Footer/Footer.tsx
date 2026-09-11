@@ -39,11 +39,20 @@ export function Footer() {
               </strong>
 
               <span>
-                Bairro, Cidade - Estado
+                Rua Santa Clara, 36
+                <br />
+                Condomínio do Edifício Brooklyn
+                <br />
+                Rio de Janeiro - RJ
               </span>
 
-              <a href="#" className={styles.action}>
-                Ver no mapa
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Rua+Santa+Clara%2C+36%2C+Condom%C3%ADnio+do+Edif%C3%ADcio+Brooklyn%2C+Rio+de+Janeiro+-+RJ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.action}
+              >
+                Ver no mapa 
               </a>
             </div>
           </div>
@@ -113,9 +122,10 @@ export function Footer() {
           {/* Mapa */}
           <div className={styles.map}>
             <iframe
-              src="https://www.google.com/maps?q=São%20Luís%2C%20Maranhão&output=embed"
+              src="https://www.google.com/maps?q=Rua%20Santa%20Clara%2C%2036%2C%20Condom%C3%ADnio%20do%20Edif%C3%ADcio%20Brooklyn%2C%20Rio%20de%20Janeiro%20-%20RJ&output=embed"
               loading="lazy"
               title="Localização do restaurante Aruna"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
 

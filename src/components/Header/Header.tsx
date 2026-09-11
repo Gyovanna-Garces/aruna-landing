@@ -27,7 +27,6 @@ export function Header() {
       </a>
       <nav className={styles.menu}>
         <a href="#restaurante" className={styles.menuLink}>O Aruna</a>
-        <a href="#experiencia" className={styles.menuLink}>Experiência</a>
         <a href="#menu" className={styles.menuLink}>Sabores</a>
         <a href="#contato" className={styles.menuLink}>Galeria</a>
         <a href="#contato" className={styles.menuLink}>Contato</a>
