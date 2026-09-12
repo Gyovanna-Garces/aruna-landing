@@ -58,7 +58,7 @@
 }
 
 .menuLink {
-    color: var(--color-sand);
+    color: var(--color-white);
     text-decoration: none;
     font-family: var(--ff-body);
     font-size: var(--fs-sm);
@@ -68,7 +68,7 @@
     transition: color 0.3s ease;
 }
 
-/* Criamos a linha invisível embaixo do link */
+/*  linha invisível embaixo do link */
 .menuLink::after {
     content: '';
     position: absolute;
@@ -76,7 +76,7 @@
     left: 0;
     width: 100%;
     height: 2px; /* Espessura da linha coral */
-    background-color: var(--color-coral); /* Usa o coral dos seus tokens globais */
+    background-color: var(--color-gold); /* Usa o ouro dos seus tokens globais */
     
     /* O segredo da animação da esquerda para a direita */
     transform: scaleX(0); /* Começa com tamanho zero (escondida) */
@@ -94,8 +94,7 @@
     opacity: 1;
 }
 
-/* Se quiser que a página ativa/selecionada já comece com a linha visível, 
-   você pode usar esta classe auxiliar no futuro */
+
 .menuLinkActive::after {
     transform: scaleX(1);
 }
