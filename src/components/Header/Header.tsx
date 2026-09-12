@@ -9,7 +9,7 @@ export function Header() {
 
   useEffect(() => {
     function handleScroll() {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 50);
     }
     handleScroll();
     window.addEventListener("scroll", handleScroll);
@@ -19,16 +19,16 @@ export function Header() {
   return (
     <header
       id="header"
-      className={`${styles.header} ${!scrolled ? styles.transparent : ""}`}
+      className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
     >
       <a href="/" id="header-logo" className={styles.logoContainer}>
-        <Image src="/logo/logo.svg" alt="Símbolo do Restaurante Aruna" width={75} height={75} priority />
+        <Image src="/logo/logo.svg" alt="Símbolo Aruna" width={75} height={75} priority />
         <Image src="/logo/logo-letter-icon.svg" alt="Restaurante Aruna" width={169} height={75} priority />
       </a>
       <nav className={styles.menu}>
         <a href="#restaurante" className={styles.menuLink}>O Aruna</a>
         <a href="#menu" className={styles.menuLink}>Sabores</a>
-        <a href="#contato" className={styles.menuLink}>Galeria</a>
+        <a href="#galeria" className={styles.menuLink}>Galeria</a>
         <a href="#contato" className={styles.menuLink}>Contato</a>
       </nav>
       <a href="#reserva" className={styles.btnReserve}>
