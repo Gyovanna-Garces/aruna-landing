@@ -34,6 +34,20 @@ export function Hero() {
     }
   }, []);
 
+  useEffect(() => {
+  const handleScroll = () => {
+    const scrolled = window.scrollY;
+    
+    // Executa a transição apenas enquanto o Hero estiver visível na tela
+    if (videoRef.current && scrolled <= window.innerHeight * 1.2) {
+      videoRef.current.style.transform = `translateY(${scrolled * 0.35}px)`;
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
   return (
     <section ref={sectionRef} className={styles.hero}>
       <video

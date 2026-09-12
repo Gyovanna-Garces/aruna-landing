@@ -8,12 +8,14 @@
 
 .bgVideo {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 70% 60%; /* mesmo ajuste fino que você já vinha fazendo na foto */
   z-index: 0;
+  will-change: transform;
 }
 
 .bgImage {
