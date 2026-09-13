@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Hero } from '@/components/Hero/Hero';
 import { Conceito } from '@/components/Conceito/Conceito';
 import { Experience } from '@/components/Experience/Experience';
+import { Sabores } from '@/components/Sabores/Sabores';
 
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Conceito />
       <Experience />
+      <Sabores />
     </div>
   )
 
