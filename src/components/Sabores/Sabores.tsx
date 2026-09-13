@@ -1,94 +1,83 @@
 'use client'
 import styles from './Sabores.module.css'
-import { useState, WheelEvent, KeyboardEvent } from 'react'
+import { useState, WheelEvent, KeyboardEvent, useEffect, useRef } from 'react'
 
-// Tipagem da estrutura dos pratos
 interface Prato {
   id: number
+  categoria: string
+  nome: string
+  descricao: string
   imagem: string
-  alt: string
 }
 
-// Lista de pratos para alternar
 const PRATOS: Prato[] = [
-  {
-    id: 1,
-    imagem: '/ravioli2.jpg',
-    alt: 'Prato 1 - Ravioli Especial'
-  },
-  {
-    id: 2,
-    imagem: '/ravioli.jpg', // Corrigida a extensão de .jpgg para .jpg
-    alt: 'Prato 2 - Ravioli Tradicional'
-  },
-  {
-    id: 3,
-    imagem: '/sopa.png',
-    alt: 'Prato 3 - Sopa Especial'
-  }
+  { id: 1, categoria: 'Entrada', nome: 'Ceviche de Manga', descricao: 'O frescor do mar encontra a doçura tropical da manga.', imagem: '/ravioli.jpg' },
+  { id: 2, categoria: 'Prato principal', nome: 'Moqueca de Banana', descricao: 'Tradição baiana com um toque de frescor amazônico.', imagem: '/ravioli2.jpg' },
+  { id: 3, categoria: 'Prato principal', nome: 'Polvo do Atlântico', descricao: 'Texturas e sabores que contam o nosso litoral.', imagem: '/lomdo de namorado grelhado.png' },
+  { id: 4, categoria: 'Sobremesa', nome: 'Torta de Coco', descricao: 'Doçura e leveza em cada camada.', imagem: '/sopa.png' },
 ]
 
+// quanto de scroll (em vh) cada prato "consome" dentro da seção pinada
+const VH_POR_PRATO = 90
+
 export function Sabores() {
-  const [index, setIndex] = useState<number>(0)
-  const [animacao, setAnimacao] = useState<string>('')
-  const [bloqueado, setBloqueado] = useState<boolean>(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
 
-  const pratoAtual = PRATOS[index]
+  const [progress, setProgress] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [maxTranslate, setMaxTranslate] = useState(0)
 
-  // Função centralizadora da troca com animação
-  const trocarPrato = (proximoIndex: number, direcao: 'proximo' | 'anterior') => {
-    if (bloqueado) return
-    setBloqueado(true)
-
-    // 1. Aplica a classe de saída no CSS
-    setAnimacao(direcao === 'proximo' ? styles.saindo : styles.saindoReverso)
-
-    setTimeout(() => {
-      // 2. Atualiza a imagem ativa
-      setIndex(proximoIndex)
-
-      // 3. Posiciona a nova imagem para entrar
-      setAnimacao(direcao === 'proximo' ? styles.entrando : styles.entrandoReverso)
-
-      // 4. Limpa as classes para concluir a transição
-      setTimeout(() => {
-        setAnimacao('')
-        setBloqueado(false)
-      }, 50)
-    }, 400) // 400ms sincronizado com a transição do CSS
-  }
-
-  const proximo = () => {
-    const proximoIndex = (index + 1) % PRATOS.length
-    trocarPrato(proximoIndex, 'proximo')
-  }
-
-  const anterior = () => {
-    const proximoIndex = (index - 1 + PRATOS.length) % PRATOS.length
-    trocarPrato(proximoIndex, 'anterior')
-  }
-
-  // Evento de Scroll do mouse sobre o container da imagem
-  const handleWheel = (e: WheelEvent<HTMLDivElement>) => {
-    if (e.deltaY > 0) {
-      proximo()
-    } else {
-      anterior()
+   useEffect(() => {
+    const medir = () => {
+      if (!trackRef.current) return
+      const excedente = trackRef.current.scrollWidth - window.innerWidth
+      setMaxTranslate(Math.max(excedente, 0))
     }
-  }
+    medir()
+    window.addEventListener('resize', medir)
+    return () => window.removeEventListener('resize', medir)
+  }, [])
 
-  // Evento de Teclas (setas direcionais)
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'ArrowRight') proximo()
-    if (e.key === 'ArrowLeft') anterior()
-  }
+  // calcula o progresso do scroll dentro da seção
+  useEffect(() => {
+    let ticking = false
+
+    const atualizar = () => {
+      const section = sectionRef.current
+      if (!section) return
+
+      const totalScroll = section.offsetHeight - window.innerHeight
+      const scrolled = -section.getBoundingClientRect().top
+      const p = totalScroll > 0 ? Math.min(Math.max(scrolled / totalScroll, 0), 1) : 0
+
+      setProgress(p)
+      setActiveIndex(Math.round(p * (PRATOS.length - 1)))
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(atualizar)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    atualizar()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <section id="menu" className={styles.sabores}>
-      <div className={styles.container}>
-        
-        {/* Coluna 1: Textos (FIXA) */}
-        <div className={styles.content}>
+    <section
+      ref={sectionRef}
+      className={styles.sabores}
+      style={{ height: `${100 + PRATOS.length * VH_POR_PRATO}vh` }}
+    >
+      <div className={styles.sticky}>
+        <div className={styles.bg} aria-hidden="true" />
+
+        <div className={styles.header}>
           <div className={styles.eyebrow}>
             <span>Sabores</span>
             <span className={styles.line} />
@@ -98,44 +87,33 @@ export function Sabores() {
             <br />
             inesquecível.
           </h2>
-          <p className={styles.text}>
-            Nossos pratos são uma celebração da
-            <br />
-            nossa terra, do mar e da criatividade da
-            <br />
-            nossa cozinha. Ingredientes frescos e
-            <br />
-            técnicas inovadoras se unem para criar
-          </p>
         </div>
 
-        {/* Coluna 2: Prato com Animação Dinâmica */}
-        
-        <div className={styles.pratoWrapper}>
-          <div
-            className={styles.pratoContainer}
-            onWheel={handleWheel}
-            onKeyDown={handleKeyDown}
-            tabIndex={0} // Permite interagir usando as setas do teclado ao clicar/focar no elemento
-          >
-            <img
-              src={pratoAtual.imagem}
-              alt={pratoAtual.alt}
-              className={`${styles.pratoImagem} ${animacao}`}
-            />
-            
-          </div>
-          {/* Controles para clicar e testar a transição */}
-            <div className={styles.controles}>
-                <button onClick={anterior} disabled={bloqueado} aria-label="Voltar prato">
-                ←
-                </button>
-                <button onClick={proximo} disabled={bloqueado} aria-label="Avançar prato">
-                →
-                </button>
-            </div>
+        <div
+          ref={trackRef}
+          className={styles.track}
+          style={{ transform: `translateX(-${progress * maxTranslate}px)` }}
+        >
+          {PRATOS.map((prato, i) => (
+            <article
+              key={prato.id}
+              className={`${styles.card} ${i === activeIndex ? styles.cardActive : ''}`}
+            >
+              <div className={styles.cardImageWrap}>
+                <img src={prato.imagem} alt={prato.nome} className={styles.cardImage} />
+              </div>
+              <span className={styles.cardCategoria}>{prato.categoria}</span>
+              <h3 className={styles.cardTitulo}>{prato.nome}</h3>
+              <p className={styles.cardDescricao}>{prato.descricao}</p>
+            </article>
+          ))}
         </div>
 
+        <div className={styles.dots}>
+          {PRATOS.map((_, i) => (
+            <span key={i} className={`${styles.dot} ${i === activeIndex ? styles.dotActive : ''}`} />
+          ))}
+        </div>
       </div>
     </section>
   )

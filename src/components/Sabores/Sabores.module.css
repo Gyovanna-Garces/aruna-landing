@@ -1,26 +1,40 @@
-.sabores{
-    width: 100%;
-    background-color: var(--color-sand-light);
-    padding: 7rem 0;
+.sabores {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-sand-light);
+  padding: 7rem 0;
+  
 }
 
-.container{
-    width: 100%;
-    max-width: var(--container-width);
-    display: flex;
-    justify-content: space-evenly;
-    margin: 0 auto;
-    align-items: center;
-    gap: 5rem;
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
 }
 
-.content{
-    max-width: 480px;
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-sand-light);
+  padding: 0 1.5rem;
 }
 
 .eyebrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.7rem;
   margin-bottom: 1.25rem;
   font-family: var(--ff-body);
@@ -36,104 +50,123 @@
   height: 1px;
   background-color: var(--color-gold);
 }
-.text {
-  font-family: var(--ff-body);
-  font-size: var(--fs-sm);
-  line-height: 1.7;
-  color: var(--color-text);
-}
 
 .title {
-  margin-bottom: 1.5rem;
   font-family: var(--ff-heading);
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--color-petroleum);
 }
 
-/* 1. O Wrapper: posiciona a caixa inteira na coluna direita do Grid */
-.pratoWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-/* 2. O Container: limita o tamanho do prato e esconde a rotação de saída */
-.pratoContainer {
-  width: 400px;
-  height: 400px;
+.track {
   position: relative;
-  overflow: hidden; /* Corta o prato quando ele rodar pra fora */
+  z-index: 1;
+  display: flex;
+  gap: 4rem;
+  padding: 0 12vw;
+  will-change: transform;
 }
 
-/* 3. A Imagem: faz o movimento circular */
-.pratoImagem {
+.card {
+  flex: 0 0 auto;
+  width: min(78vw, 520px);
+  opacity: 0.3;
+  transform: scale(0.88);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.cardActive {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cardImageWrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.cardImage {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-  transform-origin: 50% 150%; /* O ponto de rotação fica abaixo do prato */
+  object-fit: cover;
+  display: block;
 }
 
-/* Estado de Saída: Gira para baixo e some */
-.saindo {
-  transform: rotate(-180deg);
-  opacity: 0;
+.cardCategoria {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
 }
 
-/* Estado de Entrada: Vem girando do lado oposto */
-.entrando {
-  transform: rotate(180deg);
-  opacity: 0;
+.cardTitulo {
+  font-family: var(--ff-heading);
+  font-size: 1.7rem;
+  color: var(--color-petroleum);
+  margin-bottom: 0.5rem;
 }
 
-/* --- ANIMAÇÃO INVERSA (Voltar / Anterior) --- */
-.saindoReverso {
-  transform: rotate(90deg);  /* Gira para o lado oposto ao sair */
-  opacity: 0;
+.cardDescricao {
+  font-family: var(--ff-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  opacity: 0.75;
+  max-width: 40ch;
 }
 
-.entrandoReverso {
-  transform: rotate(-90deg); /* Vem do lado oposto ao entrar */
-  opacity: 0;
-}
-
-.controles {
+.dots {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  justify-content: center;
+  gap: 0.6rem;
+  z-index: 2;
 }
 
-.controles button {
-  background: transparent;
-  border: 1px solid var(--color-petroleum, #333);
-  color: var(--color-petroleum, #333);
-  width: 40px;
-  height: 40px;
+.dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-.controles button:hover {
-  background-color: var(--color-gold, #d4af37);
-  transform: translateY(-3px)
+.dotActive {
+  background-color: var(--color-gold);
 }
 
+/* Mobile: sticky/scroll-jacking incomoda no toque — vira carrossel de swipe normal */
 @media (max-width: 768px) {
   .sabores {
+    height: auto !important;
+  }
+  .sticky {
+    position: static;
+    height: auto;
     padding: 4rem 0;
   }
-  .container {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  .track {
+    transform: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     padding: 0 1.5rem;
+    gap: 1.5rem;
   }
-  .title {
-    font-size: 2.2rem;
+  .card {
+    scroll-snap-align: center;
+    width: 82vw;
+    opacity: 1;
+    transform: none;
+  }
+  .dots {
+    display: none;
   }
 }

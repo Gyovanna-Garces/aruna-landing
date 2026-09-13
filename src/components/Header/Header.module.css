@@ -115,6 +115,7 @@
 
 .btnReserve:hover {
     background-color: #003e42; /* Escurece levemente o petróleo */
+    transform: translateY(-3px);
 }
 
 @media (max-width: 768px) {

@@ -95,6 +95,7 @@
 }
 .btnPrimary:hover {
   opacity: 0.9;
+  transform: translateY(-3px);
 }
 
 .smokeLayer {
@@ -126,6 +127,7 @@
 }
 .btnSecondary:hover {
   background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 1024px) {
