@@ -6,7 +6,7 @@ const experiencePhotos = [
   { src: "/bebidas.jpg", alt: "Prato Aruna" },
   { src: "/interno.jpg", alt: "Detalhe da mesa" },
   { src: "/deck.jpg", alt: "Equipe Aruna" },
-  { src: "/lomdo de namorado grelhado.png", alt: "Fachada Aruna" },
+  { src: "/lombo de namorado grelhado.png", alt: "Fachada Aruna" },
 ];
 
 export function Experience() {

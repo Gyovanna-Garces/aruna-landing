@@ -122,20 +122,117 @@
     transform: translateY(-3px);
 }
 
-@media (max-width: 768px) {
-    .header {
-        height: 70px; /* Reduz ligeiramente a altura no mobile para ganhar tela */
-        padding: 0 1.5rem; /* Diminui o recuo lateral para a logo não ficar espremida */
-    }
+.mobileReserve {
+  display: none;
+}
 
-    /* Esconde o menu de links no mobile para não quebrar a linha */
-    .menu {
-        display: none; 
-    }
+.menuButton{
+    display: none;
 
-    /* Reduz o tamanho do botão para caber perfeitamente ao lado da logo */
-    .btnReserve {
-        padding: 0.6rem 1.2rem;
-        font-size: var(--fs-xs);
-    }
+}
+
+@media (max-width: 830px) {
+  .header {
+    height: 70px;
+    padding: 0 1.5rem;
+  }
+
+  .headerContainer {
+    position: relative;
+  }
+
+  /*
+   * No mobile mantemos apenas o símbolo
+   * para liberar espaço para o botão de menu.
+   */
+
+  .logoContainer img:first-child {
+    width: 58px;
+    height: 58px;
+  }
+
+  /*
+   * Menu escondido por padrão.
+   */
+  .menu {
+    display: none;
+  }
+
+  /*
+   * Menu aberto.
+   */
+  .menu.menuOpen {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    background-color: var(--color-sand-light);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .menu.menuOpen .menuLink {
+    color: var(--color-petroleum);
+    font-size: var(--fs-base);
+    padding-bottom: 4px;
+  }
+
+  /*
+   * Botão de reserva que aparece dentro
+   * do menu mobile.
+   */
+  .mobileReserve {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+    padding: 0.85rem 1.5rem;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    border-radius: var(--radius-button);
+    font-family: var(--ff-body);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /*
+   * Esconde o botão de reserva que fica
+   * normalmente no Header.
+   */
+  .btnReserve {
+    display: none;
+  }
+
+  /*
+   * Botão ☰ / ✕.
+   */
+  .menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-white);
+    font-family: var(--ff-body);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /*
+   * Quando o Header estiver sobre o fundo claro
+   * após o scroll, o símbolo do menu fica petróleo.
+   */
+  .scrolled .menuButton {
+    color: var(--color-petroleum);
+  }
 }

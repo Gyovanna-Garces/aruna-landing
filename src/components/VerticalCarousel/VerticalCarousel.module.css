@@ -8,35 +8,78 @@
   border-radius: 24px;
 }
 
+/* Cada coluna ocupa metade do espaço */
 .column {
   flex: 1;
+  min-width: 0;
+  align-self: flex-start;
+}
+
+/* É o track que realmente se movimenta */
+.track {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  will-change: transform;
+
+}
+
+/* Cada grupo possui uma sequência completa de imagens */
+.group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 1.5rem;
   gap: 1.5rem;
+
 }
 
+/* Desalinha a coluna da direita */
 .columnReverse {
-  margin-top: -140px; /* desalinha as colunas, efeito masonry */
+  margin-top: -140px;
 }
 
+/* Movimento para cima */
 .playUp {
   animation: scrollUp 14s linear infinite;
 }
 
+/* Movimento para baixo */
 .playDown {
   animation: scrollDown 16s linear infinite;
 }
 
+/*
+  Como existem dois grupos idênticos,
+  -50% = exatamente um grupo completo.
+*/
 @keyframes scrollUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes scrollDown {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(0); }
+  from {
+    transform: translateY(-50%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
+/* Pausa ao passar o mouse */
+.wrapper:hover .playUp,
+.wrapper:hover .playDown {
+  animation-play-state: paused;
+}
+
+/* Imagem */
 .thumb {
   position: relative;
   width: 100%;
