@@ -37,15 +37,12 @@
   z-index: 1;
 }
 
-.container {
+.heroContainer{
   position: relative;
   z-index: 2;
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: var(--hero-left-offset, 4rem); /* alinhado dinamicamente com a logo */
-  padding-right: 4rem;
-  box-sizing: border-box;
 }
 
 .content {

@@ -12,7 +12,7 @@ const experiencePhotos = [
 export function Experience() {
   return (
     <section id="experiencia" className={styles.experience}>
-      <div className={styles.header}>
+      <div className={`container ${styles.header}`}>
         <div className={styles.eyebrow}>
           <span>Experiência</span>
           <span className={styles.line} />

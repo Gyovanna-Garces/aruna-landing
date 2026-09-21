@@ -4,7 +4,7 @@ import  {VerticalCarousel}  from "../VerticalCarousel/VerticalCarousel";
 export function Conceito() {
   return (
     <section id="restaurante" className={styles.conceito}>
-      <div className={styles.container}>
+      <div className={`container ${styles.conceitoContainer}`}>
         <div className={styles.content}>
           <div className={styles.eyebrow}>
             <span>Conceito</span>
