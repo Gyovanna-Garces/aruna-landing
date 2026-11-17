@@ -13,31 +13,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 70% 60%; /* mesmo ajuste fino que você já vinha fazendo na foto */
+  object-position: 70% 60%;
   z-index: 0;
   will-change: transform;
-}
-
-.bgImage {
-  object-fit: cover !important;
-  object-position: 50% 10%; /* ajuste os valores conforme a posição do prato na sua foto */
-  z-index: 0;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to right,
-    rgba(0, 30, 32, 0.55) 0%,
-    rgba(0, 30, 32, 0.3) 35%,
-    rgba(0, 30, 32, 0.08) 65%,
-    rgba(0, 30, 32, 0) 100%
+    90deg,
+    rgba(0, 30, 32, 0.624) 23%,
+    rgba(0, 30, 32, 0.127) 52%,
+    rgba(0, 30, 32, 0) 77%,
+    rgba(0, 30, 32, 0.624) 84%
   );
   z-index: 1;
 }
 
-.heroContainer{
+.heroContainer {
   position: relative;
   z-index: 2;
   height: 100%;
@@ -46,109 +40,41 @@
 }
 
 .content {
-  max-width: 480px;
+  max-width: 560px;
 }
 
+/* Título: fonte, tamanho e cor vêm do h1 global */
 .title {
-  font-family: var(--ff-heading);
-  font-size: var(--fs-xl);
-  color: #FFFFFF;
-  line-height: 1.2;
-  margin-bottom: var(--space-md);
+  line-height: 1; /* no Figma as duas linhas ficam bem juntas */
+  margin-bottom: 1.5rem;
 }
 
+/* "Sabor." — itálico Fraunces em verde folha (ponto final incluso) */
 .italic {
   font-style: italic;
+  color: var(--color-verde-folha);
 }
 
 .description {
-  font-family: var(--ff-body);
-  font-size: var(--fs-base);
-  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--fs-body);
+  line-height: 1.875; /* 30px sobre 16px */
   margin-bottom: var(--space-lg);
-  max-width: 420px;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: 1.5rem;
   flex-wrap: wrap;
-}
-
-.btnPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--clr-accent-coral);
-  color: #fff;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-button);
-  font-family: var(--ff-body);
-  font-weight: 600;
-  font-size: var(--fs-sm);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-.btnPrimary:hover {
-  opacity: 0.9;
-  transform: translateY(-3px);
-}
-
-.smokeLayer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: screen;   /* some com o preto do overlay, só a fumaça aparece */
-  pointer-events: none;     /* garante que cliques passem direto pro conteúdo abaixo */
-  transition: transform 0.2s ease-out; /* suaviza o movimento do mouse */
-  z-index: 1;
-}
-
-.btnSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: transparent;
-  border: 1.5px solid #fff;
-  color: #fff;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-button);
-  font-family: var(--ff-body);
-  font-weight: 600;
-  font-size: var(--fs-sm);
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-.btnSecondary:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-3px);
-}
-
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 2rem;
-  }
 }
 
 @media (max-width: 768px) {
   .hero {
     height: 560px;
   }
-  .title {
-    font-size: 2.25rem;
-  }
-  .actions {
-    flex-direction: grid;
-    align-items: flex-start;
-  }
 
-  .sunDecor {
-    width: 40px;
-    height: 40px;
-    top: 16px;
-    right: 16px;
+  /* Sem quebra forçada no celular: o texto flui sozinho */
+  .brDesktop {
+    display: none;
   }
 }

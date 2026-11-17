@@ -62,6 +62,7 @@
 /*TÍTULO CENTRAL*/
 
 .title {
+  --title-start-scale: 1;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -70,11 +71,13 @@
   z-index: 3;
   /*transform: translate(-50%, -50%) translateY(calc(40px - (40px * var(--title-progress))));*/
   /*opacity: calc( 0.2 + (0.8 * var(--title-progress)));*/
-  transform: 
-    translate(-50%, -50%) 
-    translateY(calc(40px - (40px * var(--title-progress)))) 
-    scale(calc(0.3 + (0.7 * var(--title-progress))));
-  opacity:calc( 0.4 + (0.9 * var(--title-progress)));
+  transform:
+    translate(-50%, -50%)
+    scale(calc(
+      var(--title-start-scale) -
+      ((var(--title-start-scale) - 1) * var(--title-progress))
+    ));
+  opacity: 1;
   color: var(--color-white);
   text-align: center;
   font-family: var(--ff-heading);
@@ -177,7 +180,8 @@
 
 .dishesSticky {
   position: sticky;
-  top: 0;
+  top: 4rem;
+  bottom: 4rem;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -214,7 +218,7 @@
   top: 0;
   width: 2px;
   height: 100%;
-  background: var(--clr-gold);
+  background: var(--color-gold);
 }
 
 .dishesIntroText {
@@ -263,7 +267,7 @@
   height: 100%;
   padding-left: 14vw;
   padding-right: 14vw;
-  gap: 10vw;
+  gap: 14vw;
   transform: translate3d(calc(var(--dish-translate) * -1), 0, 0);
   will-change: transform;
 }
@@ -317,15 +321,15 @@
   left: 50%;
   top: 50%;
   width: 32vw;
-  height: 59vh;
+  height: 57vh;
   transform: translate(-50%, -50%);
   overflow: hidden;
   z-index: 3;
 }
 
 .dishImage {
-  object-fit: cover;
-  transform: scale(1.04);
+    object-fit: contain;
+  transform: scale(1);
   transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -418,7 +422,9 @@
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
+  padding-bottom: 12px;
   border-top: 1px solid rgb(26 49 51 / 0.16);
+  border-bottom: 1px solid #1a313329;
   z-index: 20;
   font-family: var(--ff-body);
   font-size: 0.55rem;
@@ -484,6 +490,71 @@
   .fluidText {
     transform: translateY(calc(-190vh * var(--text-progress)));
   }
+    /* =========================
+     PRATOS — MOBILE
+     ========================= */
+
+  .dish {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 76vh;
+  }
+
+  /* O PRATO + nome */
+
+  .dishInfoLeft {
+    position: absolute;
+    top: 8%;
+    left: 0;
+    width: 100%;
+    transform: none;
+    text-align: center;
+  }
+
+  .dishLabel {
+    margin-bottom: 12px;
+  }
+
+  .dishInfoLeft h3 {
+    width: 85%;
+    margin: 0 auto;
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+    line-height: 0.98;
+  }
+
+  /* IMAGEM */
+
+  .dishImageWrapper {
+    left: 50%;
+    top: 48%;
+    width: 45vw;
+    height: 27vh;
+    transform: translate(-50%, -50%);
+  }
+
+  /* SABORES */
+
+  .dishInfoRight {
+    left: 0;
+    right: auto;
+    top: 70%;
+    width: 100%;
+    transform: none;
+    text-align: center;
+  }
+
+  .dishInfoRight p {
+    width: 82%;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* SAZONALIDADE */
+
+  .dishSeason {
+    bottom: 3vh;
+  }
 }
 
 /*MOBILE PEQUENO*/
@@ -521,5 +592,70 @@
 
   .fluidText {
     transform: translateY(calc(-170vh * var(--text-progress)));
+  }
+  /* =========================
+     PRATOS — MOBILE
+     ========================= */
+
+  .dish {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 76vh;
+  }
+
+  /* O PRATO + nome */
+
+  .dishInfoLeft {
+    position: absolute;
+    top: 8%;
+    left: 0;
+    width: 100%;
+    transform: none;
+    text-align: center;
+  }
+
+  .dishLabel {
+    margin-bottom: 12px;
+  }
+
+  .dishInfoLeft h3 {
+    width: 85%;
+    margin: 0 auto;
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+    line-height: 0.98;
+  }
+
+  /* IMAGEM */
+
+  .dishImageWrapper {
+    left: 50%;
+    top: 48%;
+    width: 45vw;
+    height: 27vh;
+    transform: translate(-50%, -50%);
+  }
+
+  /* SABORES */
+
+  .dishInfoRight {
+    left: 0;
+    right: auto;
+    top: 70%;
+    width: 100%;
+    transform: none;
+    text-align: center;
+  }
+
+  .dishInfoRight p {
+    width: 82%;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* SAZONALIDADE */
+
+  .dishSeason {
+    bottom: 3vh;
   }
 }

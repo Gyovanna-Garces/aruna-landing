@@ -1,0 +1,213 @@
+.team {
+  width: 100%;
+  padding: var(--space-lg);
+  background-color: var(--color-sand-light);
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 4rem;
+
+  margin-bottom: 2.5rem;
+}
+
+.heading {
+  max-width: 500px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+
+  margin-bottom: 0.9rem;
+
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+
+  color: var(--color-petroleum);
+}
+
+.line {
+  width: 28px;
+  height: 1px;
+
+  background-color: var(--color-gold);
+}
+
+.heading h2 {
+  margin: 0;
+
+  font-family: var(--ff-heading);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.05;
+
+  color: var(--color-petroleum);
+}
+
+.intro > p {
+  max-width: 430px;
+  margin: 0;
+
+  font-family: var(--ff-body);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+
+  color: var(--clr-text-muted);
+}
+
+/* =========================
+   TEAM GRID
+========================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+}
+
+/* =========================
+   MEMBER CARD
+========================= */
+
+.member {
+  min-width: 0;
+}
+
+.imageWrapper {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 0.88;
+
+  overflow: hidden;
+  border-radius: 10px;
+
+  background-color: var(--color-sand);
+}
+
+.image {
+  object-fit: cover;
+
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.member:hover .image {
+  transform: scale(1.04);
+}
+
+/* =========================
+   MEMBER INFO
+========================= */
+
+.memberInfo {
+  position: absolute;
+
+  left: 0.55rem;
+  right: 0.55rem;
+  bottom: 0.55rem;
+
+  padding: 0.65rem 0.75rem;
+
+  background-color: rgba(253, 251, 247, 0.95);
+
+  border-radius: 7px;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.memberInfo h3 {
+  margin: 0 0 0.1rem;
+
+  font-family: var(--ff-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+
+  color: var(--color-text-dark);
+}
+
+.memberInfo span {
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+
+  color: var(--clr-text-muted);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .intro {
+    gap: 2.5rem;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .team {
+    padding: var(--section-padding-mobile) 0;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .heading h2 {
+    font-size: 2.4rem;
+  }
+
+  .intro > p {
+    max-width: 500px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+
+  .imageWrapper {
+    aspect-ratio: 0.82;
+  }
+
+  .memberInfo {
+    left: 0.4rem;
+    right: 0.4rem;
+    bottom: 0.4rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .memberInfo h3 {
+    font-size: 0.75rem;
+  }
+
+  .memberInfo span {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

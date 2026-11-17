@@ -4,15 +4,15 @@ import Image from "next/image";
 import styles from "./VerticalCarousel.module.css";
 
 const columnA = [
-  "/uniforme.jpeg",
-  "/fachada.jpeg",
-  "/embalagem_2.jpeg",
+  "/Estrutura/Uniforme.jpeg",
+  "/Estrutura/Fachada.jpeg",
+  "/Estrutura/Embalagem_2.jpeg",
 ];
 
 const columnB = [
-  "/uniforme.jpeg",
-  "/fachada.jpeg",
-  "/embalagem.jpeg",
+  "/Estrutura/Uniforme.jpeg",
+  "/Estrutura/Fachada.jpeg",
+  "/Estrutura/Embalagem_1.jpeg",
 ];
 
 export function VerticalCarousel() {

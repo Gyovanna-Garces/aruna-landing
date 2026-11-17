@@ -1,0 +1,200 @@
+.cta {
+  padding: var(--space-lg);
+  background-color: var(--color-sand-light);
+}
+
+.CTAContainer {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.5fr) auto auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 3.5rem;
+  background-color: var(--color-petroleum);
+  border-radius: 24px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 0.3rem;
+
+  font-family: var(--ff-heading);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+
+  color: var(--color-sand-light);
+}
+
+.content h2 {
+  margin-bottom: 0.35rem;
+
+  font-family: var(--ff-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.05;
+
+  color: var(--color-white);
+}
+
+.content p {
+  margin: 0;
+
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+
+  color: #d1e0dd;
+}
+
+/* =========================
+   RESERVATION OPTIONS
+========================= */
+
+.reservationOptions {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.65rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field span {
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+
+  color: var(--color-sand-light);
+}
+
+.field input,
+.field select {
+  width: 115px;
+  height: 40px;
+
+  padding: 0 0.65rem;
+
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-button);;
+
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+
+  color: var(--color-white);
+
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--color-gold);
+}
+
+.field select option {
+  color: var(--color-text-dark);
+  background-color: var(--color-sand-light);
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  min-width: 175px;
+
+  padding: 0 1.4rem;
+
+  background-color: var(--color-coral);
+  color: var(--color-white);
+
+  border-radius: var(--radius-button);
+
+  font-family: var(--ff-body);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--color-gold);
+  color: var(--color-petroleum);
+  transform: translateY(-3px);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+   .cta {
+    padding: var(--space-lg);
+  }
+  
+  .CTAContainer {
+    grid-template-columns: 1fr auto;
+  }
+
+  .reservationOptions {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .cta {
+    padding: var(--space-lg);
+  }
+
+  .CTAContainer {
+    grid-template-columns: 1fr;
+
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
+
+    border-radius: 20px;
+  }
+
+  .reservationOptions {
+    grid-column: auto;
+    grid-row: auto;
+
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

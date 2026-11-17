@@ -180,14 +180,14 @@ export default function Sabores() {
 /*Bloco 13: O Contêiner Principal e a Seção de Sabores*/
 
   return (
-    <section id="menu" className={styles.sabores} aria-label="Sabores do Aruna">
+    <section id="sabor" className={styles.sabores} aria-label="Sabores do Aruna">
       {/* PRIMEIRA PARTE */}
       <section ref={openingRef} className={styles.opening}>
         <div className = {styles.openingSticky}>
 
 {/*Bloco 14: A Imagem de Fundo e os Textos de Abertura*/}
           <div className = {styles.imageWrapper}>
-            <Image src="/praia.avif" alt="Sabores e gastronomia do Aruna"
+            <Image src="/sabores_img.svg" alt="Sabores e gastronomia do Aruna"
              fill priority sizes="100vw" className={styles.image}
             />
           </div>

@@ -6,9 +6,6 @@ import styles from "./Hero.module.css";
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Alinha o texto do hero com a posição real da logo no header
-
-
   // Força o autoplay do vídeo de fundo
   useEffect(() => {
     const video = videoRef.current;
@@ -20,22 +17,23 @@ export function Hero() {
     }
   }, []);
 
+  // Parallax: o vídeo desce mais devagar que a rolagem, só enquanto o Hero está visível
   useEffect(() => {
-  const handleScroll = () => {
-    const scrolled = window.scrollY;
-    
-    // Executa a transição apenas enquanto o Hero estiver visível na tela
-    if (videoRef.current && scrolled <= window.innerHeight * 1.2) {
-      videoRef.current.style.transform = `translateY(${scrolled * 0.35}px)`;
-    }
-  };
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+      if (videoRef.current && scrolled <= window.innerHeight * 1.2) {
+        videoRef.current.style.transform = `translateY(${scrolled * 0.35}px)`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <section className={styles.hero}>
+    // theme-dark (global): texto em areia, botão outline herda a cor, hover do outline claro
+    <section className={`theme-dark ${styles.hero}`}>
       <video
         ref={videoRef}
         className={styles.bgVideo}
@@ -49,27 +47,31 @@ export function Hero() {
       </video>
 
       <div className={styles.overlay} />
-        <div className={`container ${styles.heroContainer}`}>
-          <div className={styles.content}>
-            <h1 className={styles.title}>
-              Um abraço em <br />
-              <span className={styles.italic}>forma</span> de sabor.
-            </h1>
-            <p className={styles.description}>
-              No Aruna, a cozinha tropical brasileira <br />
-              ganha vida em pratos que celebram <br />
-              a nossa terra, o mar e as pessoas.
-            </p>
-            <div className={styles.actions}>
-              <a href="#reserva" className={styles.btnPrimary}>
-                Reserve sua mesa ↗
-              </a>
-              <a href="#restaurante" className={styles.btnSecondary}>
-                Conheça o Aruna ↗
-              </a>
-            </div>
+
+      <div className={`container ${styles.heroContainer}`}>
+        <div className={styles.content}>
+          <h1 className={styles.title}>
+            Um Abraço em <br />
+            forma de <span className={styles.italic}>Sabor.</span>
+          </h1>
+
+          <p className={styles.description}>
+            No Aruna, a cozinha tropical brasileira ganha vida em
+            <br className={styles.brDesktop} />{" "}
+            pratos que celebram a nossa terra, o mar e as pessoas.
+          </p>
+
+          <div className={styles.actions}>
+            {/* Botões vêm do global: .btn + variante */}
+            <a href="#reserva" className="btn btn-terracota">
+              Reserve sua mesa →
+            </a>
+            <a href="#cardapio" className="btn btn-outline">
+              Ver Cardápio →
+            </a>
           </div>
         </div>
+      </div>
     </section>
   );
 }

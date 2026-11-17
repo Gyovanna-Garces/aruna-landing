@@ -5,7 +5,7 @@ export const pratos = [
     descricao:
       "Com vinagrete de tangerina e pérolas de coentro.",
     sazonalidade: "Outono · Inverno",
-    imagem: "/ravioli.jpg",
+    imagem: "/pratos/Entrada fria/Salada_2.png",
   },
   {
     categoria: "Entrada quente",
@@ -13,7 +13,7 @@ export const pratos = [
     descricao:
       "Um encontro entre o mar e o conforto da focaccia artesanal.",
     sazonalidade: "Disponibilidade ligada à origem do mexilhão",
-    imagem: "/sopa.png",
+    imagem: "/pratos/Entrada quente/Caldo_01.png",
   },
   {
     categoria: "Massa",
@@ -21,7 +21,7 @@ export const pratos = [
     descricao:
       "Recheio de ricota, meia cura, Araxá e castanhas, finalizado na manteiga e cumaru.",
     sazonalidade: "Outono · Inverno",
-    imagem: "/ravioli2.jpg",
+    imagem: "/pratos/Massa/Ravioli_01.png",
   },
   {
     categoria: "Prato principal",
@@ -29,6 +29,6 @@ export const pratos = [
     descricao:
       "Legumes salteados, molho de passas, tuile preta e capuchinha.",
     sazonalidade: "Primavera · Verão",
-    imagem: "/lombo de namorado grelhado.png",
+    imagem: "/pratos/Prato principal/Lombo_02.png",
   },
 ];

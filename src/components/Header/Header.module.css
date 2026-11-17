@@ -1,167 +1,153 @@
-/* Header.module.css */
+/* ==========================================================================
+   HEADER — dois estados, em todos os tamanhos de tela
+
+   1) TOPO (padrão): transparente sobre o Hero
+      nav areia, sublinhado amarelo-sol, botão terracota
+   2) ROLADO (.scrolled): fosco (areia translúcida + blur)
+      nav petróleo, sublinhado terracota, botão petróleo
+
+   As cores de texto dos dois estados vêm de duas variáveis:
+   --header-fg (nav e ícone do menu) e --header-underline (linha do hover).
+   Botões vêm do global (.btn + .btn-terracota / .btn-petroleum);
+   o troca-troca de variante é feito no Header.tsx.
+   ========================================================================== */
+
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    padding: 0;
-    background-color: transparent; /* Começa transparente por padrão */
-    z-index: 1000;
-    box-sizing: border-box;
-    background-color: transparent;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, height 0.3s ease;
-    
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  box-sizing: border-box;
+
+  /* Estado 1 — topo */
+  --header-fg: var(--color-sand);
+  --header-underline: var(--color-gold);
+
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
+  backdrop-filter: blur(0px) saturate(100%);
+  border-bottom: 1px solid transparent;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
+
+  transition:
+    background-color 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    height 0.3s ease;
+}
+
+/* Estado 2 — fosco, assim que há scroll */
+.scrolled {
+  --header-fg: var(--color-petroleum);
+  --header-underline: var(--color-terracota);
+
+  height: 70px;
+  background-color: color-mix(in srgb, var(--color-sand) 70%, transparent);
+
+  /* -webkit- para Safari */
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .headerContainer {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* --- CLASSE VARIANTE PARA QUANDO ESTIVER EM CIMA DA FOTO --- */
-.scrolled {
-    height: 70px;
-
-    background-color: rgb(from var(--color-sand-light) r g b / 0.7);
-
-    /* O filtro precisa vir com a versão -webkit- para Safari/Chrome antigos */
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    backdrop-filter: blur(12px) saturate(180%);
-
-    /* Borda sutil para separar o header da página */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-}
-
-.scrolled .menuLink {
-    color: var(--color-petroleum);
-}
-
-.scrolled .btnReserve {
-    background-color: var(--color-petroleum);
-    color: var(--color-white);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logoContainer {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    height: 100%; 
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  height: 100%;
 }
 
+/* --- Navegação --- */
 .menu {
-    display: flex;
-    align-items: center;
-    gap: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 
 .menuLink {
-    color: var(--color-white);
-    text-decoration: none;
-    font-family: var(--ff-body);
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    position: relative;
-    padding-bottom: 6px;
-    transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 6px;
+  color: var(--header-fg);
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/*  linha invisível embaixo do link */
+/* Linha que cresce da esquerda para a direita no hover */
 .menuLink::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px; /* Espessura da linha coral */
-    background-color: var(--color-gold); /* Usa o ouro dos seus tokens globais */
-    
-    /* O segredo da animação da esquerda para a direita */
-    transform: scaleX(0); /* Começa com tamanho zero (escondida) */
-    transform-origin: bottom left; /* Força a animação a começar na extremidade esquerda */
-    transition: transform 0.3s ease-in-out; /* Velocidade e suavidade do efeito */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--header-underline);
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Quando passa o mouse, a linha expande para o tamanho total (1) */
-.menuLink:hover::after {
-    transform: scaleX(1);
-}
-
-/* Mantém a opacidade boa no hover já que agora temos a linha indicadora */
-.menuLink:hover {
-    opacity: 1;
-}
-
-
+.menuLink:hover::after,
 .menuLinkActive::after {
-    transform: scaleX(1);
-}
-/* Botão de Reserva integrado com as regras do seu global */
-.btnReserve {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--color-coral);
-    color: var(--color-white);
-    padding: 0.75rem 2rem;
-    font-family: var(--ff-body);
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    border-radius: var(--radius-button);
-    transition: background-color 0.3s ease, color 0.3s ease;
+  transform: scaleX(1);
 }
 
-.btnReserve:hover {
-    background-color: #003e42; /* Escurece levemente o petróleo */
-    transform: translateY(-3px);
-}
-
-.mobileReserve {
+/* --- Botões de reserva ---
+   Aparência vem do global (.btn). Aqui só controlamos onde cada um aparece.
+   Seletor com .header para ganhar do display do .btn independente da ordem
+   em que os CSS são carregados. */
+.header .mobileReserve {
   display: none;
 }
 
-.menuButton{
-    display: none;
-
+.menuButton {
+  display: none;
 }
 
-@media (max-width: 830px) {
+/* --- Mobile e tablet ---
+   Breakpoint em 1024px (era 830px): com 5 links + botão maior, a faixa entre
+   830 e ~960px não cabia numa linha. */
+@media (max-width: 1024px) {
   .header {
     height: 70px;
-    padding: 0 1.5rem;
   }
 
   .headerContainer {
     position: relative;
   }
 
-  /*
-   * No mobile mantemos apenas o símbolo
-   * para liberar espaço para o botão de menu.
-   */
-
+  /* Símbolo menor para liberar espaço para o botão do menu */
   .logoContainer img:first-child {
     width: 58px;
     height: 58px;
   }
 
-  /*
-   * Menu escondido por padrão.
-   */
+  /* Menu escondido por padrão */
   .menu {
     display: none;
   }
 
-  /*
-   * Menu aberto.
-   */
+  /* Menu aberto: painel areia sob o header (texto sempre petróleo) */
   .menu.menuOpen {
+    --header-fg: var(--color-petroleum);
+    --header-underline: var(--color-terracota);
+
     position: absolute;
     top: 70px;
     left: 0;
@@ -171,47 +157,27 @@
     align-items: center;
     gap: 1.5rem;
     padding: 2rem 1.5rem;
-    background-color: var(--color-sand-light);
+    background-color: var(--color-sand);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   }
 
   .menu.menuOpen .menuLink {
-    color: var(--color-petroleum);
-    font-size: var(--fs-base);
     padding-bottom: 4px;
   }
 
-  /*
-   * Botão de reserva que aparece dentro
-   * do menu mobile.
-   */
-  .mobileReserve {
+  /* Reserva dentro do menu mobile */
+  .header .mobileReserve {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     max-width: 280px;
-    padding: 0.85rem 1.5rem;
-    background-color: var(--color-coral);
-    color: var(--color-white);
-    border-radius: var(--radius-button);
-    font-family: var(--ff-body);
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    text-decoration: none;
   }
 
-  /*
-   * Esconde o botão de reserva que fica
-   * normalmente no Header.
-   */
-  .btnReserve {
+  /* Esconde a reserva do desktop */
+  .header .btnReserve {
     display: none;
   }
 
-  /*
-   * Botão ☰ / ✕.
-   */
+  /* Botão ☰ / ✕ — acompanha a cor do estado (areia no topo, petróleo no fosco) */
   .menuButton {
     display: flex;
     align-items: center;
@@ -221,18 +187,16 @@
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--color-white);
+    color: var(--header-fg);
     font-family: var(--ff-body);
     font-size: 1.8rem;
     line-height: 1;
     cursor: pointer;
+    transition: color 0.3s ease;
   }
 
-  /*
-   * Quando o Header estiver sobre o fundo claro
-   * após o scroll, o símbolo do menu fica petróleo.
-   */
-  .scrolled .menuButton {
-    color: var(--color-petroleum);
+  .menuButton:focus-visible {
+    outline: 2px solid var(--header-underline);
+    outline-offset: 2px;
   }
 }

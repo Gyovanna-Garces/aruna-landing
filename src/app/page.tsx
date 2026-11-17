@@ -4,7 +4,8 @@ import { Conceito } from '@/components/Conceito/Conceito';
 import { Experience } from '@/components/Experience/Experience';
 import  Sabores  from '@/components/Sabores/Sabores';
 import { Banner } from '@/components/Banner/Banner';
-
+import { CTA } from '@/components/CTA/CTA';
+import { OurTeam } from '@/components/Contact/OurTeam';
 
 
 export const metadata: Metadata = {
@@ -16,10 +17,12 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Conceito />
       <Experience />
       <Sabores />
       <Banner />
+      <CTA />
+      <OurTeam />
+      
     </div>
   )
 

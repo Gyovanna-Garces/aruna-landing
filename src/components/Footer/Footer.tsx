@@ -1,17 +1,8 @@
 import Image from "next/image";
 
-import {
-  FiMapPin,
-  FiClock,
-  FiMail,
-} from "react-icons/fi";
+import { FiMapPin, FiClock, FiMail,} from "react-icons/fi";
 
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaTiktok,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaTiktok, FaWhatsapp,} from "react-icons/fa";
 
 import styles from "./Footer.module.css";
 

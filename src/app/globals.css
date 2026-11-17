@@ -1,41 +1,51 @@
-/* ==========================================================================
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap');
+/* 
+==========================================================================
    1. DESIGN TOKENS (Baseado no layout real do Aruna)
    ========================================================================== */
 :root {
     /* --- SWATCHES (Amostras brutas de cores fornecidas) É o coração da id visual --- */
-    --color-petroleum: #005257;
-    --color-coral: #BD7158;
-    --color-gold: #D9B432;
-    --color-sand: #E1C7B4;
-    
-    /* Auxiliares necessárias para o layout */
-    --color-cream-bg: #FDFBF7; /* O fundo predominantemente claro do site */
-    --color-sand-light: #F3E6DA;
-    --color-text-dark: #1A3133; /* Tom petróleo quase preto para máxima leitura */
-    --color-white: #FFFFFF;
+    --color-petroleum: #03575C;     /* Principal 1 */
+    --color-sand: #FAE7D9;          /* Principal 2 */
+    --color-terracota: #DC7D37;
+    --color-pitaya: #E8437E;
+    --color-gold: #F5B942;          /* Amarelo-Sol */
+    --color-verde-folha: #7FA33D;
 
-    /* --- TOKENS SEMÂNTICOS DE COR --- */
-    /* Tema Padrão (Claro) */
-    --clr-bg-main: var(--color-cream-bg);
-    --clr-text-body: var(--color-text-dark);
+    /* --- TOKENS SEMÂNTICOS (tema claro, padrão) --- */
+    --clr-bg-main: var(--color-sand);
+    --clr-text-body: var(--color-petroleum);
     --clr-text-heading: var(--color-petroleum);
-    --clr-text-muted: #5A6E70;
+    --clr-text-tag: var(--color-petroleum);
 
-    /* Elementos de Destaque */
-    --clr-accent-coral: var(--color-coral);
-    --clr-accent-gold: var(--color-gold);
+    /* Detalhes (terracota e pitaya NÃO são cores de texto) */
+    --clr-accent: var(--color-terracota);
 
-    /* --- TOKENS DE TIPOGRAFIA --- */
-    --ff-heading: 'Cormorant Garamond', serif;
-    --ff-body: 'Manrope', sans-serif;
+    /* --- TIPOGRAFIA --- */
+    --ff-heading: 'Fraunces', Georgia, serif;
+    --ff-body: 'Proxima Nova', 'Helvetica Neue', Arial, sans-serif;
     
-    /* Escala de tamanhos responsiva aproximada do layout */
-    --fs-xs: 0.75rem;   /* Tag de seções (ex: "CONCEITO") */
-    --fs-sm: 0.875rem;  /* Textos de rodapé / infos menores */
-    --fs-base: 1rem;    /* Texto corrido dos parágrafos */
-    --fs-md: 1.25rem;   /* Subtítulos e cards */
-    --fs-lg: 2.25rem;   /* Títulos de seções intermediárias */
-    --fs-xl: 3.5rem;    /* Título principal do Hero ("Um abraço...") */
+    /* Tamanhos (valores do Figma, em rem) */
+    --fs-title: 3.75rem;        /* 60px — Títulos (Fraunces) */
+    --fs-subtitle: 3.125rem;    /* 50px — Subtítulos (Fraunces) */
+    --fs-text-short: 2.5rem;    /* 40px — Corpo de texto curto (Fraunces) */
+    --fs-body: 1rem;            /* 16px — Corpo de texto geral (Proxima Nova) */
+
+    /* Pesos */
+    --fw-regular: 400;
+    --fw-light: 300;
+    --fw-thin: 100;
+
+      /* --- BOTÕES --- */
+    --btn-padding-x: 2rem;      /* 32px laterais (Figma) */
+    --btn-padding-y: 0.875rem;  /* 14px cima e baixo (Figma) */
+    --btn-radius: 20px;         /* Figma */
+    --btn-font-weight: 600;     /* CONFERIR no Figma: o texto dos prints parece semibold */
+
+    /* Estados de hover (valores ESTIMADOS a partir dos prints; conferir no Figma) */
+    --btn-hover-darken: 15%;                             /* quanto os botões sólidos escurecem */
+    --btn-hover-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);  /* sombra do hover */
+    --btn-outline-hover-fill: rgba(3, 87, 92, 0.2);      /* preenchimento do outline em fundo claro */
 
     /* --- ESPAÇAMENTO E ESTRUTURA --- */
     --space-sm: 0.5rem;
@@ -43,19 +53,22 @@
     --space-lg: 2rem;
     --section-padding-desktop: 6rem;
     --section-padding-mobile: 4rem;
-    
-    --container-width: 1200px;
-    --radius-button: 9999px; /* Botões do Aruna são completamente arredondados */
+    --container-width: 1200px
 }
 
 /* ==========================================================================
-   2. REGRAS DE INVERSÃO DE TEMA (Seções Escuras como Hero e Experiência)
+   2. TEMA ESCURO (seções como Hero e Experiência)
+   Redefine os tokens e já pinta o fundo da própria seção.
    ========================================================================== */
-.theme-dark {
+   .theme-dark {
     --clr-bg-main: var(--color-petroleum);
     --clr-text-body: var(--color-sand);
-    --clr-text-heading: var(--color-white);
-    --clr-text-muted: var(--color-sand);
+    --clr-text-heading: var(--color-sand);
+    --clr-text-tag: var(--color-gold);
+    --btn-outline-hover-fill: rgba(250, 231, 217, 0.3);  /* outline em fundo escuro */
+
+    background-color: var(--clr-bg-main);
+    color: var(--clr-text-body);
 }
 
 /* ==========================================================================
@@ -78,7 +91,8 @@ html {
 
 body {
     font-family: var(--ff-body);
-    font-size: var(--fs-base);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-regular);
     color: var(--clr-text-body);
     background-color: var(--clr-bg-main);
     line-height: 1.6;
@@ -93,32 +107,73 @@ img {
 }
 
 /* ==========================================================================
-   4. ESTILOS BASE DA INTERFACE
+   4. ESTILOS DE TEXTO (espelham os text styles do Figma)
+   Funcionam pela tag (h1, h2, h3) e também por classe em qualquer elemento.
    ========================================================================== */
-h1, h2, h3 {
+
+/* Título — Fraunces 60 regular */
+h1,
+.title {
     font-family: var(--ff-heading);
-    color: var(--clr-text-heading);
-    font-weight: 400;
+    font-size: var(--fs-title);
+    font-weight: var(--fw-regular);
     line-height: 1.2;
+    color: var(--clr-text-heading);
 }
 
-h1 { font-size: var(--fs-xl); }
-h2 { font-size: var(--fs-lg); }
-h3 { font-size: var(--fs-md); }
+/* Subtítulo — Fraunces 50 regular */
+h2,
+.subtitle {
+    font-family: var(--ff-heading);
+    font-size: var(--fs-subtitle);
+    font-weight: var(--fw-regular);
+    line-height: 1.2;
+    color: var(--clr-text-heading);
+}
 
-/* Pequenas tags acima dos títulos (ex: "CONCEITO", "GALERIA") */
-.section-tag {
-    font-size: var(--fs-xs);
+/* Corpo de texto curto — Fraunces 40 regular */
+h3,
+.text-short {
+    font-family: var(--ff-heading);
+    font-size: var(--fs-text-short);
+    font-weight: var(--fw-regular);
+    line-height: 1.3;
+    color: var(--clr-text-heading);
+}
+
+/* Corpo de texto geral — Proxima Nova 16 regular (já é o padrão do body) */
+.text-body {
     font-family: var(--ff-body);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-regular);
+    line-height: 1.6;
+}
+
+/* Variações de peso (Proxima Nova) */
+.fw-regular { font-weight: var(--fw-regular); }
+.fw-light   { font-weight: var(--fw-light); }
+.fw-thin    { font-weight: var(--fw-thin); }
+
+/* Cores de texto permitidas no Figma */
+.text-petroleum { color: var(--color-petroleum); }
+.text-sand      { color: var(--color-sand); }
+.text-sun       { color: var(--color-gold); }
+.text-leaf      { color: var(--color-verde-folha); } /* só em um trecho: <span class="text-leaf"> */
+
+/* Tag pequena acima dos títulos (ex: "CONCEITO", "GALERIA") */
+.section-tag {
+    display: block;
+    font-family: var(--ff-body);
+    font-size: var(--fs-body);
+    font-weight: var(--fw-regular);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--color-coral);
+    color: var(--clr-text-tag);
     margin-bottom: var(--space-md);
-    display: block;
 }
 
 /* ==========================================================================
-   5. LAYOUT COMPARTILHADO (Containers e Alinhamento)
+   5. LAYOUT COMPARTILHADO
    ========================================================================== */
 .container {
     width: 100%;
@@ -128,48 +183,76 @@ h3 { font-size: var(--fs-md); }
 }
 
 .section-padding {
-    padding: var(--space-xl) 0;
+    padding: var(--section-padding-mobile) 0;
+}
+
+@media (min-width: 768px) {
+    .section-padding {
+        padding: var(--section-padding-desktop) 0;
+    }
 }
 
 /* ==========================================================================
-   6. BOTÕES DO ARUNA (UI Style Guide aplicado)
+   6. BOTÕES (Figma: 32px laterais, 14px cima/baixo, raio 20px)
+
+   Variantes:
+   .btn-terracota | .btn-petroleum | .btn-verde  -> sólidos
+   .btn-outline                                  -> só contorno; herda a cor
+                                                    do texto do contexto
+                                                    (sand no escuro, petroleum no claro)
+
+   Hover:
+   - sólidos: escurecem (--btn-hover-darken) e ganham sombra
+   - outline: ganha preenchimento translúcido e sombra (a cor do texto não muda)
+
+   Uso: <a class="btn btn-terracota" href="#">Reserve sua mesa →</a>
+
+   O contorno usa box-shadow inset para não somar 2px à altura do botão.
    ========================================================================== */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 2rem;
+    gap: 0.5rem; /* espaço entre texto e seta, caso a seta seja um ícone */
+    padding: var(--btn-padding-y) var(--btn-padding-x);
     font-family: var(--ff-body);
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    border-radius: var(--radius-button);
+    font-size: var(--fs-body);
+    font-weight: var(--btn-font-weight);
+    line-height: 1.2;
+    color: var(--color-sand);
+    border: 0;
+    border-radius: var(--btn-radius);
+    box-shadow: 0 0 0 0 transparent;
     cursor: pointer;
-    transition: all 0.25s ease-in-out;
     text-decoration: none;
+    transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 }
 
-/* Botão Sólido Coral */
-.btn-coral {
-    background-color: var(--clr-accent-coral);
-    color: var(--color-white);
-    border: 1px solid transparent;
+.btn:focus-visible {
+    outline: 2px solid var(--clr-accent);
+    outline-offset: 3px;
 }
 
-.btn-coral:hover {
-    background-color: transparent;
-    border-color: var(--color-white);
-    color: var(--color-white);
+/* --- Sólidos --- */
+.btn-terracota { --btn-bg: var(--color-terracota);     background-color: var(--btn-bg); }
+.btn-petroleum { --btn-bg: var(--color-petroleum);     background-color: var(--btn-bg); }
+.btn-verde     { --btn-bg: var(--color-verde-folha);   background-color: var(--btn-bg); }
+
+.btn-terracota:hover,
+.btn-petroleum:hover,
+.btn-verde:hover {
+    background-color: color-mix(in srgb, var(--btn-bg), black var(--btn-hover-darken));
+    box-shadow: var(--btn-hover-shadow);
 }
 
-/* Botão de Linha / Transparente (ex: "Conheça o Aruna") */
+/* --- Contorno --- */
 .btn-outline {
     background-color: transparent;
-    border: 1px solid currentColor; /* Herda a cor do texto do contexto atual */
     color: inherit;
+    box-shadow: inset 0 0 0 1px currentColor, 0 0 0 0 transparent;
 }
 
 .btn-outline:hover {
-    background-color: var(--color-white);
-    color: var(--color-petroleum);
-    border-color: var(--color-white);
+    background-color: var(--btn-outline-hover-fill);
+    box-shadow: inset 0 0 0 1px currentColor, var(--btn-hover-shadow);
 }

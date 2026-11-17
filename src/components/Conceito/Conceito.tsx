@@ -1,18 +1,51 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import styles from "./Conceito.module.css";
-import  {VerticalCarousel}  from "../VerticalCarousel/VerticalCarousel";
+
+import { VerticalCarousel } from "../VerticalCarousel/VerticalCarousel";
 
 export function Conceito() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="restaurante" className={styles.conceito}>
+    <section ref={sectionRef} id="restaurante" className={`${styles.conceito} ${
+        isVisible ? styles.isVisible : ""
+      }`}
+    >
       <div className={`container ${styles.conceitoContainer}`}>
         <div className={styles.content}>
+
           <div className={styles.eyebrow}>
             <span>Conceito</span>
             <span className={styles.line} />
           </div>
 
           <h2 className={styles.title}>
-            O encontro do 
+            O encontro do
             <br />
             amanhecer, do mar
             <br />
@@ -28,8 +61,11 @@ export function Conceito() {
             <br />
             e sobre viver bons momentos à mesa.
           </p>
+
         </div>
+
         <VerticalCarousel />
+
       </div>
     </section>
   );
